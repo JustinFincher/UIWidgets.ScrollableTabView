@@ -10,6 +10,7 @@ namespace FinGameWorks.Scripts.Views
     {
         public readonly int TotalCount;
         public Func<int,Widget> GetViewOfIndex = index => new Container();
+        public Func<Widget> GetDefaultView = () => new Container();
         public readonly Func<int,String> GetTitleOfIndex = index => "";
         public readonly Action<int> OnSelectedIndexChanged;
         public readonly Action<int> OnIndexClosed;
@@ -24,7 +25,7 @@ namespace FinGameWorks.Scripts.Views
         public const float TabStripIntersectionWidth = 12;
         public const float TabStripTopRadius = 8;
 
-        public ScrollableTabView(int totalCount = 0, int selectedIndex = -1, Func<int,Widget> viewOfIndex = null, Func<int,string> titleOfIndex = null, float tabControlLeftPadding = 12, float tabControlRightPadding = 12, float tabControlTopPadding = 8, Action<int> onSelectedIndexChanged = null, Action<int> onIndexClosed = null ,Action<int,int> onIndexSwitched = null, Key key = null) : base(key)
+        public ScrollableTabView(int totalCount = 0, int selectedIndex = -1, Func<int,Widget> viewOfIndex = null, Func<Widget> defaultView = null, Func<int,string> titleOfIndex = null, float tabControlLeftPadding = 12, float tabControlRightPadding = 12, float tabControlTopPadding = 8, Action<int> onSelectedIndexChanged = null, Action<int> onIndexClosed = null ,Action<int,int> onIndexSwitched = null, Key key = null) : base(key)
         {
             TotalCount = totalCount;
             SelectedIndex = selectedIndex;
@@ -42,6 +43,10 @@ namespace FinGameWorks.Scripts.Views
             OnSelectedIndexChanged = onSelectedIndexChanged;
             OnIndexSwitched = onIndexSwitched;
             OnIndexClosed = onIndexClosed;
+            if (defaultView != null)
+            {
+                GetDefaultView = defaultView;
+            }
         }
 
         public override State createState()
@@ -104,7 +109,7 @@ namespace FinGameWorks.Scripts.Views
                     ),
                     new Expanded
                     (
-                        child: widget.SelectedIndex >= 0 ? widget.GetViewOfIndex.Invoke(widget.SelectedIndex) : new Container()
+                        child: widget.SelectedIndex >= 0 ? widget.GetViewOfIndex.Invoke(widget.SelectedIndex) : widget.GetDefaultView()
                     )
                 }
             );
