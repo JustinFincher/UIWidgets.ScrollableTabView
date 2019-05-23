@@ -1,0 +1,15 @@
+{
+    "name": "com.justzht.uiwidgets.scrollabletabview",
+    "displayName": "UIWidgets Scrollable Tab View",
+    "version": "0.0.1-preview",
+    "unity": "2018.3",
+    "description": "A Chrome like tab view for UIWidgets using Material Theme",
+    "keywords": [
+        "unity",
+        "uiwidgets",
+        "flutter"
+    ],
+    "dependencies": {
+        "com.unity.uiwidgets": "https://github.com/UnityTech/UIWidgets.git"
+    }
+}
