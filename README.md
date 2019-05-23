@@ -1,6 +1,12 @@
 # UIWidgets.ScrollableTabView
 > A Chrome-like scrollable tab view widget for UIWidgets
 
+# How to add
+Add this line to your package.json dependencies list
+```
+"com.justzht.uiwidgets.scrollabletabview": "https://github.com/JustinFincher/UIWidgets.ScrollableTabView.git"
+```
+
 # Usage
 
 ```csharp
